@@ -1,5 +1,4 @@
-
-const employees = [
+const initialEmployees = [
     {
         "id": 1,
         "firstName": "Arjun",
@@ -202,20 +201,29 @@ const employees = [
     }
 ];
 
-
 const admin = [{
     "id": 1,
     "email": "admin@me.com",
     "password": "123"
 }];
 
-export const setLocalStorage = ()=>{
-    localStorage.setItem('employees',JSON.stringify(employees))
-    localStorage.setItem('admin',JSON.stringify(admin))
+export const setLocalStorage = () => {
+    const existingEmployees = localStorage.getItem('employees');
+    if (!existingEmployees) {
+        localStorage.setItem('employees', JSON.stringify(initialEmployees));
+    }
+    const existingAdmin = localStorage.getItem('admin');
+    if (!existingAdmin) {
+        localStorage.setItem('admin', JSON.stringify(admin));
+    }
 }
-export const getLocalStorage = ()=>{
-    const employees = JSON.parse(localStorage.getItem('employees'))
-    const admin = JSON.parse(localStorage.getItem('admin'))
 
-    return {employees,admin}
+export const getLocalStorage = () => {
+    const employees = JSON.parse(localStorage.getItem('employees')) || initialEmployees;
+    const admin = JSON.parse(localStorage.getItem('admin'));
+    return { employees, admin };
+}
+
+export const updateLocalStorage = (employees) => {
+    localStorage.setItem('employees', JSON.stringify(employees));
 }

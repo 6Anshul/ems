@@ -1,6 +1,7 @@
-import React from 'react'
 
-const FailedTask = () => {
+import PropTypes from 'prop-types';
+
+const FailedTask = ({ data }) => {
   return (
     <div className='flex-shrink-0 h-full w-[300px] p-5 bg-yellow-400 rounded-xl'>
             <div className='flex justify-between items-center'>
@@ -17,5 +18,14 @@ const FailedTask = () => {
         </div>
   )
 }
+
+FailedTask.propTypes = {
+  data: PropTypes.shape({
+    category: PropTypes.string.isRequired,
+    taskDate: PropTypes.string.isRequired,
+    taskTitle: PropTypes.string.isRequired,
+    taskDescription: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 export default FailedTask

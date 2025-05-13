@@ -1,4 +1,4 @@
-import React from 'react'
+import PropTypes from 'prop-types'
 
 const CompleteTask = ({data}) => {
   return (
@@ -16,6 +16,14 @@ const CompleteTask = ({data}) => {
             </div>
         </div>
   )
+}
+CompleteTask.propTypes = {
+  data: PropTypes.shape({
+    category: PropTypes.string.isRequired,
+    taskDate: PropTypes.string.isRequired,
+    taskTitle: PropTypes.string.isRequired,
+    taskDescription: PropTypes.string.isRequired,
+  }).isRequired,
 }
 
 export default CompleteTask
